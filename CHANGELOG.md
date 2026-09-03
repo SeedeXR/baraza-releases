@@ -3,6 +3,38 @@
 All notable changes to Baraza VR are documented here. Newest release first.
 Baraza VR is an Afro-futuristic VR courtroom drama for Meta Quest 3.
 
+## [0.2.1] - 2026-09-03
+The exhibition build: hand-tracked movement, the Council's dossiers, and a fairer Judge.
+
+### Added
+- Hand-tracked teleport. Pinch to teleport across the plain, through the dome entrance and anywhere inside. Controllers still work.
+- A short animated coach shows the teleport gesture on arrival, then disappears.
+- Councilor seals. Each councilor has a seal beside them. It glows when you look at it or point at it.
+- Councilor dossiers. Pinch a seal to open that councilor's card: who they are and what they stand for. A Dossier button opens their full story. Pinch the seal again to close. One card open at a time.
+- Sound on opening and closing the cards and the dossier.
+- Ink illustrations on the chronology screen.
+- Ambient night sound at the entrance: wind in the grass, crickets, occasional night birds.
+- Trial timer cues: a tick in the final seconds of each answer and a warning tone when time is low.
+- A version number in the bottom-right corner of the landing card.
+
+### Changed
+- The chronology and incident report screens scroll in step with the narration. Manual scrolling returns when the narration ends.
+- With controllers, only one ray is shown while aiming a teleport.
+- The standing marker inside the dome is now in front of the question panel, not under it.
+- The seals no longer rotate. They brighten on hover and scale up while their card is open.
+
+### Fixed
+- Scoring: honest answers in plain words were being marked as evasive, so most trials ended guilty. Corrected. Denial phrased around keywords and repeated filler still earn no credit. On a fifty-trial rehearsal scored by hand, the court now agrees with the verdict in forty-five cases.
+- Teleporting through the dome entrance and to every part of the interior.
+- Dome walls are solid.
+- Letter spacing on the incident report.
+
+### Known Issues
+- You may arrive facing away from the dome. Turn around.
+- Removing the headset mid-story does not reset the experience for the next visitor.
+- Kiswahili is not yet available.
+- Voice recognition can mishear some words with certain accents. Speak clearly, review what the court heard, and speak again if needed.
+
 ## [0.2.0] - 2026-08-18
 The court now listens. Speak your answers aloud and the Judge weighs your own words to reach the verdict.
 
