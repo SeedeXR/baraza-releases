@@ -42,8 +42,8 @@
   .sec{margin-top:18px}
   ul.sub{margin:8px 0 2px;padding-left:22px}
   ul.sub li{margin:4px 0;color:var(--muted)}
-  .shot{margin:14px 0 0}
-  .shot img{display:block;max-width:100%;width:520px;border-radius:10px;border:1px solid #2a2a2a}
+  .shot{margin:14px auto 6px;text-align:center}
+  .shot img{display:block;max-width:100%;width:520px;margin:0 auto;border-radius:10px;border:1px solid #2a2a2a}
   .shot figcaption{color:#C6C6C6;font-size:14px;margin-top:6px}
   .tag{display:inline-block;font-family:var(--head);font-size:.68rem;font-weight:700;letter-spacing:.6px;
        text-transform:uppercase;padding:4px 11px;border-radius:6px;margin-bottom:9px}
@@ -98,12 +98,16 @@ function parse(md){
       v = {version:m[1].trim(), date:(m[2]||'').trim(), intro:[], sections:[]}; versions.push(v); sec=null;
     } else if(v && (m = line.match(/^###\s+(.*)$/))){
       sec = {name:m[1].trim(), items:[]}; v.sections.push(sec);
-    } else if(v && (m = line.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/))){
-      if(!sec){ sec = {name:'', items:[]}; v.sections.push(sec); }
-      (sec.images = sec.images || []).push({alt:m[1].trim(), src:m[2].trim()});
+    } else if(v && (m = line.match(/^\s*!\[([^\]]*)\]\(([^)\s]+)\)$/))){
+      // An image belongs to the point above it: the last sub-item if there is one, else the last item, else the section.
+      const img = {alt:m[1].trim(), src:m[2].trim()};
+      const last = sec && sec.items.length ? sec.items[sec.items.length-1] : null;
+      const target = last ? (last.subs && last.subs.length ? last.subs[last.subs.length-1] : last) : null;
+      if(target) (target.images = target.images || []).push(img);
+      else { if(!sec){ sec = {name:'', items:[]}; v.sections.push(sec); } (sec.images = sec.images || []).push(img); }
     } else if(v && (m = line.match(/^(\s+)[-*]\s+(.*)$/)) && sec && sec.items.length){
       const last = sec.items[sec.items.length-1];
-      (last.subs = last.subs || []).push(m[2].trim());
+      (last.subs = last.subs || []).push({text:m[2].trim()});
     } else if(v && (m = line.match(/^[-*]\s+(.*)$/))){
       if(sec) sec.items.push({text:m[1].trim()});
       else { sec = {name:'', items:[{text:m[1].trim()}]}; v.sections.push(sec); }
@@ -120,9 +124,10 @@ function render(vs){
     const date = v.date ? `<span class="date">${esc(v.date)}</span>` : '';
     const intro = v.intro.length ? `<p class="intro">${esc(v.intro.join(' '))}</p>` : '';
     const secs = v.sections.map(s=>{
-      const items = s.items.map(it=>`<li>${esc(it.text)}${it.subs ? `<ul class="sub">${it.subs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : ''}</li>`).join('');
+      const figs = imgs => (imgs||[]).map(im=>`<figure class="shot"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy"><figcaption>${esc(im.alt)}</figcaption></figure>`).join('');
+      const items = s.items.map(it=>`<li>${esc(it.text)}${it.subs ? `<ul class="sub">${it.subs.map(x=>`<li>${esc(x.text)}${figs(x.images)}</li>`).join('')}</ul>` : ''}${figs(it.images)}</li>`).join('');
       const head = s.name ? `<span class="tag ${tagClass(s.name)}">${esc(s.name)}</span>` : '';
-      const shots = (s.images||[]).map(im=>`<figure class="shot"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy"><figcaption>${esc(im.alt)}</figcaption></figure>`).join('');
+      const shots = figs(s.images);
       return `<div class="sec">${head}<ul>${items}</ul>${shots}</div>`;
     }).join('');
     return `<article class="rel"><div class="rel-head"><span class="ver">${esc(v.version)}</span>${date}${badge}</div>${intro}${secs}</article>`;
