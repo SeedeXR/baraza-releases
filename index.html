@@ -23,7 +23,7 @@
        -webkit-font-smoothing:antialiased}
   a{color:var(--amber);text-decoration:none} a:hover{text-decoration:underline}
   header.top{background:var(--bg);border-bottom:1px solid var(--border);padding:38px 20px 30px;position:relative}
-  header.top::after{content:"";position:absolute;left:0;bottom:-1px;height:3px;width:120px;
+  header.top::after{content:"";position:absolute;left:0;bottom:-1px;height:3px;width:100%;
        background:linear-gradient(90deg,var(--amber),var(--orange))}
   .top-inner{max-width:840px;margin:0 auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
   .top img{height:46px;width:auto}
@@ -40,6 +40,9 @@
        letter-spacing:.8px;padding:3px 10px;border-radius:20px;text-transform:uppercase}
   .intro{color:var(--muted);margin:12px 0 2px;font-size:1.05rem}
   .sec{margin-top:18px}
+  .shot{margin:14px 0 0}
+  .shot img{display:block;max-width:100%;width:520px;border-radius:10px;border:1px solid #2a2a2a}
+  .shot figcaption{color:#C6C6C6;font-size:14px;margin-top:6px}
   .tag{display:inline-block;font-family:var(--head);font-size:.68rem;font-weight:700;letter-spacing:.6px;
        text-transform:uppercase;padding:4px 11px;border-radius:6px;margin-bottom:9px}
   .tag.added{background:var(--added);color:#121212}
@@ -69,7 +72,7 @@
 </header>
 <main id="notes"><div class="state">Loading release notes&hellip;</div></main>
 <footer>
-  <span class="brand">Seede &middot; Recreating Reality</span>
+  <span class="brand">seedexr</span>
   <span><a href="https://seedexr.com" target="_blank" rel="noopener">seedexr.com</a></span>
 </footer>
 
@@ -93,6 +96,9 @@ function parse(md){
       v = {version:m[1].trim(), date:(m[2]||'').trim(), intro:[], sections:[]}; versions.push(v); sec=null;
     } else if(v && (m = line.match(/^###\s+(.*)$/))){
       sec = {name:m[1].trim(), items:[]}; v.sections.push(sec);
+    } else if(v && (m = line.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/))){
+      if(!sec){ sec = {name:'', items:[]}; v.sections.push(sec); }
+      (sec.images = sec.images || []).push({alt:m[1].trim(), src:m[2].trim()});
     } else if(v && (m = line.match(/^[-*]\s+(.*)$/))){
       if(sec) sec.items.push(m[1].trim());
       else { sec = {name:'', items:[m[1].trim()]}; v.sections.push(sec); }
@@ -111,7 +117,8 @@ function render(vs){
     const secs = v.sections.map(s=>{
       const items = s.items.map(it=>`<li>${esc(it)}</li>`).join('');
       const head = s.name ? `<span class="tag ${tagClass(s.name)}">${esc(s.name)}</span>` : '';
-      return `<div class="sec">${head}<ul>${items}</ul></div>`;
+      const shots = (s.images||[]).map(im=>`<figure class="shot"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy"><figcaption>${esc(im.alt)}</figcaption></figure>`).join('');
+      return `<div class="sec">${head}<ul>${items}</ul>${shots}</div>`;
     }).join('');
     return `<article class="rel"><div class="rel-head"><span class="ver">${esc(v.version)}</span>${date}${badge}</div>${intro}${secs}</article>`;
   }).join('');
