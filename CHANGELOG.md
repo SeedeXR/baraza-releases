@@ -8,11 +8,11 @@ The self-resetting exhibition build: the court starts over by itself, animals ro
 
 ### Added
 - The experience resets itself, so the next visitor always starts from the beginning. The rules:
-- Headset off for less than 20 seconds, then back on: the story continues where it was.
-- Headset off for 20 seconds to 3 minutes: the next person to put it on is asked to continue or start over. With no answer it starts over after 30 seconds.
-- Headset off for 3 minutes or more: it starts over silently.
-- Worn but motionless for 3 minutes: a card asks if anyone is still there. With no answer it starts over after 60 seconds.
-- Staff restart at any time: hold both thumbs up for about two seconds. The hands turn blue and three dots fill above the right hand while you hold. A card asks to confirm. With nothing pressed, the card goes away after 20 seconds. On controllers, press Start on the left controller for the same card.
+  - Headset off for less than 20 seconds, then back on: the story continues where it was.
+  - Headset off for 20 seconds to 3 minutes: the next person to put it on is asked to continue or start over. With no answer it starts over after 30 seconds.
+  - Headset off for 3 minutes or more: it starts over silently.
+  - Worn but motionless for 3 minutes: a card asks if anyone is still there. With no answer it starts over after 60 seconds.
+  - Staff restart at any time: hold both thumbs up for about two seconds. The hands turn blue and three dots fill above the right hand while you hold. A card asks to confirm. With nothing pressed, the card goes away after 20 seconds. On controllers, press Start on the left controller for the same card.
 - A short notice on the landing card says when the experience has just started over.
 - Animals on the plain outside the dome: an elephant with her calf, a rhino, a buffalo, a hyena, a giraffe and two butterflies. They wander, feed and rest, and keep clear of the path, the dome entrance and the trees.
 - After the verdict, a small button above the results panel shrinks it out of the way so you can look around the court. Press it again to bring the panel back.

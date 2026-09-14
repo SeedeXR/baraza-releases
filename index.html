@@ -40,6 +40,8 @@
        letter-spacing:.8px;padding:3px 10px;border-radius:20px;text-transform:uppercase}
   .intro{color:var(--muted);margin:12px 0 2px;font-size:1.05rem}
   .sec{margin-top:18px}
+  ul.sub{margin:8px 0 2px;padding-left:22px}
+  ul.sub li{margin:4px 0;color:var(--muted)}
   .shot{margin:14px 0 0}
   .shot img{display:block;max-width:100%;width:520px;border-radius:10px;border:1px solid #2a2a2a}
   .shot figcaption{color:#C6C6C6;font-size:14px;margin-top:6px}
@@ -99,9 +101,12 @@ function parse(md){
     } else if(v && (m = line.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/))){
       if(!sec){ sec = {name:'', items:[]}; v.sections.push(sec); }
       (sec.images = sec.images || []).push({alt:m[1].trim(), src:m[2].trim()});
+    } else if(v && (m = line.match(/^(\s+)[-*]\s+(.*)$/)) && sec && sec.items.length){
+      const last = sec.items[sec.items.length-1];
+      (last.subs = last.subs || []).push(m[2].trim());
     } else if(v && (m = line.match(/^[-*]\s+(.*)$/))){
-      if(sec) sec.items.push(m[1].trim());
-      else { sec = {name:'', items:[m[1].trim()]}; v.sections.push(sec); }
+      if(sec) sec.items.push({text:m[1].trim()});
+      else { sec = {name:'', items:[{text:m[1].trim()}]}; v.sections.push(sec); }
     } else if(v && line.trim() && !line.startsWith('#')){
       if(!sec) v.intro.push(line.trim());
     }
@@ -115,7 +120,7 @@ function render(vs){
     const date = v.date ? `<span class="date">${esc(v.date)}</span>` : '';
     const intro = v.intro.length ? `<p class="intro">${esc(v.intro.join(' '))}</p>` : '';
     const secs = v.sections.map(s=>{
-      const items = s.items.map(it=>`<li>${esc(it)}</li>`).join('');
+      const items = s.items.map(it=>`<li>${esc(it.text)}${it.subs ? `<ul class="sub">${it.subs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : ''}</li>`).join('');
       const head = s.name ? `<span class="tag ${tagClass(s.name)}">${esc(s.name)}</span>` : '';
       const shots = (s.images||[]).map(im=>`<figure class="shot"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy"><figcaption>${esc(im.alt)}</figcaption></figure>`).join('');
       return `<div class="sec">${head}<ul>${items}</ul>${shots}</div>`;
