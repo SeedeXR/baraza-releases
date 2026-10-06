@@ -49,6 +49,9 @@
        text-transform:uppercase;padding:4px 11px;border-radius:6px;margin-bottom:9px}
   .tag.added{background:var(--added);color:#121212}
   .tag.changed{background:var(--changed);color:#fff}
+  .hero{margin:0 0 4px;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+       background:var(--surface-2);aspect-ratio:2/1}
+  .hero img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 60%}
   .tag.fixed{background:var(--fixed);color:#121212}
   .tag.known{background:transparent;color:var(--known);border:1px solid var(--known)}
   .tag.removed{background:var(--removed);color:#fff}
@@ -72,7 +75,13 @@
     </div>
   </div>
 </header>
-<main id="notes"><div class="state">Loading release notes&hellip;</div></main>
+<main>
+  <figure class="hero">
+    <img src="assets/hero.jpg" width="1600" height="900" fetchpriority="high"
+         alt="Baraza VR key art: elders seated in a circle beneath an acacia tree, drawn in grey ink wash, with the title Baraza VR, a Seede XR immersive experience">
+  </figure>
+  <div id="notes"><div class="state">Loading release notes&hellip;</div></div>
+</main>
 <footer>
   <span class="brand">seedexr</span>
   <span><a href="https://seedexr.com" target="_blank" rel="noopener">seedexr.com</a></span>
@@ -87,7 +96,8 @@ const TAGS = {
   "removed":"removed","deprecated":"removed"
 };
 function tagClass(n){ return TAGS[n.trim().toLowerCase()] || "other"; }
-function esc(s){ return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+// Escapes for both text and attribute contexts (captions and image paths land inside attributes).
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function parse(md){
   const lines = md.split(/\r?\n/);
