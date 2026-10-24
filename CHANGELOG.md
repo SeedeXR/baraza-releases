@@ -3,6 +3,38 @@
 All notable changes to Baraza VR are documented here. Newest release first.
 Baraza VR is an Afro-futuristic VR courtroom drama for Meta Quest 3.
 
+## [0.2.3] - 2026-10-24
+The living plain: the animals move, rest and call at night like animals in the wild.
+
+### Added
+- Night calls from the animals outside the dome: the hyena's whoop, the elephant's low rumble, the buffalo's grunts and snorts, and the rhino's snorts. Each call comes from the animal itself, quietly, at natural intervals. The elephant rumbles as it is about to move off, the rhino while it rests or feeds, the buffalo as it walks. Calls stop when you enter the dome.
+- The giraffe browses at small groves of thorn trees, reaching its neck into the branches.
+- The hyena walks more and often sniffs the ground as it goes. It only trots over long distances.
+- The animals live in different places each time the experience starts, away from the dome and apart from each other.
+
+### Changed
+- The animals walk, turn and stop naturally: they slow down over their last steps and stand still, and they turn in steps instead of spinning on the spot.
+- The elephant calf keeps to its mother's side.
+- The two baobabs at the dome front are larger, and you now arrive a little further from the dome door.
+
+### Fixed
+- Animals no longer walk through trees or rocks.
+- The giraffe no longer sinks into the ground, and no animal's feet float or slide.
+- A small white block at the rhino's tail is gone.
+- The councilor dossiers can be scrolled to read the full story.
+
+### Known Issues
+- The elephant calf can brush against its mother when she turns on the spot.
+- The picture may stutter for a few seconds while the court is transcribing your answer.
+- Kiswahili is not yet available.
+- Voice recognition can mishear some words with certain accents. Speak clearly, review what the court heard, and speak again if needed.
+
+### Credits
+- Spotted hyena whoop: David Watts, British Library (Wikimedia Commons), CC BY 4.0, edited.
+- Elephant rumble: King, Soltis, Douglas-Hamilton, Savage and Vollrath, PLOS ONE 2010 (supporting audio), CC BY 2.5, edited.
+- Elephant rumble: zachrau (Freesound 818986), CC0.
+- Buffalo and rhino calls: generated with ElevenLabs sound effects (elevenlabs.io).
+
 ## [0.2.2] - 2026-09-14
 The self-resetting exhibition build: the court starts over by itself, animals roam the plain, and visitors arrive facing the dome.
 
