@@ -3,6 +3,28 @@
 All notable changes to Baraza VR are documented here. Newest release first.
 Baraza VR is an Afro-futuristic VR courtroom drama for Meta Quest 3.
 
+## [0.2.4] - 2026-10-28
+The giraffe walks like a giraffe, and the court tells you when your microphone is not working.
+
+### Added
+- When the microphone is not working, a notice under the question panel says what is wrong and how to fix it: the voice system is still getting ready, you said no to microphone access, microphone access is turned off in the headset's Settings, or no microphone was found. The notice goes away when the next question starts.
+
+### Changed
+- The giraffe walks like a real giraffe: the two legs on one side move together, as giraffes walk in the wild.
+- Each giraffe hoof stays planted on the ground while it carries the weight, and the front knees fold as the leg swings forward.
+- The giraffe's turns use the same walk.
+- The elephant flaps its ears less often while it stands.
+
+### Fixed
+- The hyena no longer walks on air: its front paws now touch the ground.
+- The giraffe's body no longer sinks and jumps back up as it walks.
+
+### Known Issues
+- The elephant calf can brush against its mother when she turns on the spot.
+- The picture may stutter for a few seconds while the court is transcribing your answer.
+- Kiswahili is not yet available.
+- Voice recognition can mishear some words with certain accents. Speak clearly, review what the court heard, and speak again if needed.
+
 ## [0.2.3] - 2026-10-24
 The living plain: the animals move, rest and call at night like animals in the wild.
 
