@@ -3,6 +3,34 @@
 All notable changes to Baraza VR are documented here. Newest release first.
 Baraza VR is an Afro-futuristic VR courtroom drama for Meta Quest 3.
 
+## [0.2.5] - 2026-11-24
+The court comes alive: a new Judge, living councillors, the Curator, and a ghost on the plain.
+
+### Added
+- A new Judge. He sits on his seat with his staff planted at his side, and his lips move with every line he speaks.
+- The Judge notices you: his eyes and then his head turn to you when you come within a few steps, he nods once as you first approach, and he tilts his head while you answer.
+- The Judge blinks, shifts his weight, and his resting hand and fingers move gently while he talks.
+- The six councillors are alive: they breathe and slowly turn their heads, and they keep the look of their statues.
+- The Curator, a soft figure of light, forms in the air beside the No One Escapes Justice sign at the start and welcomes you. His body moves with his voice.
+- A ghost girl wanders the plain outside the dome. Listen for her footsteps and her hum: her sounds come from where she is.
+
+### Changed
+- The savanna has new umbrella thorn trees, and the land reaches to a far horizon.
+- The walk outside the dome, including the tall grass, now runs smoothly.
+- The court's voice now comes from the dome and grows quieter as you walk away from it.
+- You now start already facing the dome.
+
+### Fixed
+- Looking out through the dome door no longer shows an empty black space or an animal standing on air.
+- The ghost's hum can now be heard outside the dome.
+
+### Known Issues
+- The headset can get warm during a long stay in the tall grass outside the dome.
+- The picture may stutter for a moment while the court is transcribing your answer.
+- The elephant calf can brush against its mother when she turns on the spot.
+- Kiswahili is not yet available.
+- Voice recognition can mishear some words with certain accents. Speak clearly, review what the court heard, and speak again if needed.
+
 ## [0.2.4] - 2026-10-28
 The giraffe walks like a giraffe, and the court tells you when your microphone is not working.
 
